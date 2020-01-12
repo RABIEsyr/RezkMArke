@@ -1,0 +1,69 @@
+<div class="container">
+  
+
+
+<mat-horizontal-stepper  [linear]="isLinear"  #stepper>
+    <!-- keep icons as numbers during edit-->
+    
+    <ng-template matStepperIcon="edit" let-index="index" >
+      <mat-icon>done</mat-icon>
+    </ng-template>
+   
+  
+   
+  
+  
+    <mat-step label="Shopping Cart" state="home">
+        <div class="row">
+           
+          <div class="col" style="height: 300px;  width: 400px; overflow-y: scroll">
+              <app-shop-cart (productEmit)="onFirst($event)"></app-shop-cart>
+          </div>
+        </div>
+       
+        <div class="row" style="margin-top: 100px">
+            <div class="col-6 " style="text-align: right">
+              <span style="color: black; font-size: 33px; "> {{ total | currency:'USD':true}} </span>
+            </div>
+            <div class="col" style="text-align: right">
+               <button mat-button matStepperNext>Next</button>
+            </div>
+           </div>
+           
+    </mat-step>
+  
+    <mat-step  label="Fill out your address" state="form" >
+        <div style="text-align: center; position: relative;">
+          <app-shipping  (shipInfo)="onShip($event)"></app-shipping>
+          
+        </div>
+        <div class="row" >
+         <div class="col-1">
+            <button mat-button matStepperPrevious>Back</button>
+         </div>
+         <div class="col-11" style="text-align: right">
+            <button mat-button matStepperNext>Next</button>
+         </div>
+        </div>
+    </mat-step>
+  
+    
+  
+    <mat-step label="Finish" state="last">
+     
+      <div>
+        <app-payment></app-payment>
+      </div>
+      
+      <div class="row" style="margin-top: 400px">
+          <div class="col-1">
+             <button mat-button matStepperPrevious>Back</button>
+          </div>
+          <div class="col-11" style="text-align: right">
+             <button mat-button (click)="stepper.reset()">Finish</button>
+          </div>
+         </div>
+    </mat-step>
+  
+  </mat-horizontal-stepper>
+</div>

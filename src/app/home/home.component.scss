@@ -1,0 +1,262 @@
+input[type=search]::-webkit-search-cancel-button {
+  -webkit-appearance: searchfield-cancel-button;
+}
+
+#scrl {
+   overflow-y: scroll;
+   width: 100%; 
+   height: 570px;  
+   margin-top: 60px;
+   margin-left: 0 !important;
+}
+
+  // scroll size
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 0px;
+    cursor: pointer;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #5651a7; 
+    border-radius: 5px;
+    cursor: pointer;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #5651a7;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #5651a7; 
+    cursor: pointer;
+  }
+  
+  @-webkit-keyframes lightSpeedIn {
+    from {
+      -webkit-transform: translate3d(100%, 0, 0) skewX(-30deg);
+      transform: translate3d(100%, 0, 0) skewX(-30deg);
+      opacity: 0
+      
+    }
+  
+    60% {
+      -webkit-transform: skewX(20deg);
+      transform: skewX(20deg);
+      opacity: 1
+    }
+  
+    80% {
+      -webkit-transform: skewX(-5deg);
+      transform: skewX(-5deg)
+    }
+  
+    to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0)
+    }
+  }
+  
+  @keyframes lightSpeedIn {
+    from {
+      -webkit-transform: translate3d(100%, 0, 0) skewX(-30deg);
+      transform: translate3d(100%, 0, 0) skewX(-30deg);
+      opacity: 0
+    }
+  
+    60% {
+      -webkit-transform: skewX(20deg);
+      transform: skewX(20deg);
+      opacity: 1
+    }
+  
+    80% {
+      -webkit-transform: skewX(-5deg);
+      transform: skewX(-5deg)
+    }
+  
+    to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0)
+    }
+  }
+  
+  .lightSpeedIn {
+    -webkit-animation-name: lightSpeedIn;
+    animation-name: lightSpeedIn;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out
+  }
+  
+  .animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+  }
+
+
+  .star   {
+    position: relative;
+    font-size: 2rem;
+    color:rgb(163, 163, 10);
+    border: none;
+    float: left;
+    margin: auto;
+  }
+  
+
+  #div2 {
+    // filter: hue-rotate(90deg);
+    // background-color:	rgb(72,72,72);
+    // color: 	rgb(72,72,72);
+    // border-radius: 2%;
+    height: 30px;
+    margin-bottom: 20px;
+    
+  }
+
+ 
+
+  
+   #span1 {
+    margin-left: 73px;
+    // margin-right: 60px;
+    // margin-left: 50%;
+    text-align: center;
+    width: 100%
+   }
+  
+  
+ 
+
+   img {
+     width: 240px;
+      margin-left: 0px;
+      margin-right: 0px;
+      border-radius: 4px;
+   }
+
+   .mat-card-title {
+     padding: 0;
+     margin: 0;
+   }
+
+   .mat-card-header-text {
+     padding: 0;
+     margin: 0;
+     text-align:center;
+
+   }
+  .mat-card-header-text:hover{
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+
+   .mat-card-header {
+     padding: 0;
+     margin: 0;
+     text-align: center;
+
+   }
+   .mat-card-header:hover {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+
+  }
+
+  mat-card-title {
+    padding: 0;
+   
+    margin: auto;
+  }
+  mat-card-title:hover {
+    padding: 0;
+    margin: auto;
+  }
+
+.custom-card {
+  width: 245px;
+  padding: 0;
+  margin: 0 5px 5px 0;
+  background-color: rgba(3, 8, 22, 0.562);
+  border: 1px #5651a7;
+}
+
+.row {
+  margin-left: 0% !important;
+}
+
+.mat-card-content {
+  margin-left: 50px !important;
+}
+
+#custtom-col {
+  margin-left: 60px !important; 
+}
+
+#custom-col-1 {
+  max-height: 50%;
+  margin-top: 30px;
+ // border: 1px solid black;
+}
+
+#info-block section {
+//  border: 1px solid rgba(182, 175, 175, 0.808);
+background-color: rgba(255,255,255,0.3);
+margin-left: -1em;
+z-index: 9999;
+}
+
+.file-marker > div {
+  padding: 0 3px;
+  height: 570px;
+  margin-top: -2em;
+  color: #000000; 
+}
+.box-title {
+ // background: #fff none repeat scroll 0 0;
+  display: inline-block;
+  padding: 0 2px;
+  margin-left: 8em;
+  color: #000;
+}
+
+.box-contents div:nth-child(-n +3) {
+  height: 180px;
+  padding: 5px 5px;
+}
+
+.box-contents div:nth-last-child(-n +1) {
+  height: 30px;
+  padding: 5px 5px;
+}
+
+.check-box-margin {
+  margin-left: 40%;
+  margin-top: 10px;
+  padding: 10px 10px;
+}
+
+#alcohol-span {
+  margin-right: 100px;
+}
+
+#category-span {
+  margin-right: 60px;
+}
+
+
+
+
+::ng-deep .mat-form-field-infix {
+  width: 150px !important;
+}
+

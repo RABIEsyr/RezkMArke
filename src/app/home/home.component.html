@@ -1,0 +1,33 @@
+<notifier-container></notifier-container>
+
+
+ 
+
+
+<div class="row" id="scrl" #scrollDiv appScroll (scroll)="onScrol()">
+
+  <!-- <div class="col"></div> -->
+ 
+  
+  <input *ngIf="isActiveSearch" class="form-control" type="search" placeholder="Search" aria-label="Search"
+    style="margin-left: 79px;" (keyup)="onKeySearch($event)"/>
+
+  <div class="col" id="custtom-col">
+    <div class="row" *ngIf="!isSearching">
+      <ng-container *ngFor="let product of products; let i = index">
+        <app-custom-product-card class="example-card animated lightSpeedIn item-wrap " [imageUrl]="product['imageUrl']"
+          [price]="product['price']" 
+          [name]="product['name']"
+          [id] = "product['_id']"
+          (buy_id) = "catchBuyEvent($event)"
+          >
+
+        </app-custom-product-card>
+        <div *ngIf="(i+1) % 5 === 0" class="w-100">
+          <hr>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+</div>

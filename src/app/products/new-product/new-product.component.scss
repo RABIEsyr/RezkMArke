@@ -1,0 +1,45 @@
+#div1 {
+    border-radius: 5px;
+    padding: 20px;
+   // border: 1px solid #d4d1d354;
+    margin-top: 60px;
+    background-color: #f7f4f49a;
+}
+
+form {
+    width: 100%;
+    padding: 12px 20px;
+    
+    // border-radius: 4px;
+    box-sizing: border-box;
+ }
+
+::ng-deep .mat-form-field-infix {
+    background-color: transparent;
+    border: none;
+   // border-bottom: 1px solid #CCC;
+    color: #000000;
+    box-sizing: border-box;
+    font-family: 'Arvo';
+    font-size: 18px;
+    height: 50px;
+    width: 100%;
+    left: 0;
+    padding: 10px 0px;
+    position: relative;
+    top: 50%;
+   
+  
+    &:focus {
+      outline: none;    
+    }
+}
+  
+.new-product-container {
+  height: 600px;
+}
+ 
+.custom-container {
+  text-align: center;
+}
+ 

@@ -1,0 +1,364 @@
+<!-- <div style="margin: 0; padding: 0; background-color: black; height: 100%;">
+    <nav class="navbar navbar-expand-lg  ">
+        <a class="navbar-brand" style="transform: skew(0deg, 0deg); z-index: 12;" routerLink="/" id="animate-rezk">
+            RM
+        </a>
+    
+        <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+            <span class="navbar-toggler-icon"><img src="../../assets/images/baseline_menu_black_18dp.png"></span>
+        </button>
+    
+        
+    
+        <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+            <ul class="navbar-nav mr-auto">
+               
+                <li class="nav-item" *ngIf="checkAuthentication()" >
+                        <app-notification></app-notification>
+                </li>
+    
+                <li class="nav-item" *ngIf="checkAuthentication()">
+                    <a class="nav-link" style="cursor: pointer;" (click)="toggleSilde(this.initSlide = !this.initSlide)">
+                        {{uname | async}} 
+                    </a>
+                </li>
+            </ul>
+    
+    
+    
+            <div *ngIf="checkAuthentication()" class="row" style="max-height: inherit">
+                <div *ngIf="searchDiv" class="row" 
+                style="background-color:white ; max-height: 47px; margin-right: 9px">
+                    
+                        <mat-form-field class="example-full-width" 
+                        style="max-height: inherit; border: black 0.5px solid; "
+                        >
+                            <input matInput #search (input)="onSearchProduct(search.value, category.value)"
+                                placeholder="Type a product name">
+                        </mat-form-field>
+                    
+                        <mat-form-field style="max-height: inherit; border: black 0.5px solid; ">
+                            <mat-label>Categories</mat-label>
+                            <mat-select #category (selectionChange)="onSearchProduct(search.value, category.value)">
+                                <mat-option>All</mat-option>
+                                <mat-option 
+                                *ngFor="let category of categories" [value]=category._id
+                                >
+                                    {{category.type}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                </div>
+                
+                <div class="col">
+                    <i 
+                      class="material-icons"
+                      style="cursor:pointer; color: white; margin-right: 40px; margin-top: 10px;"
+                      (click)=onToggleSearch()>search
+                    </i>
+                </div>
+               
+            </div>
+    
+            <div *ngIf="!checkAuthentication()">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown ml-auto">
+                                <button mat-button [matMenuTriggerFor]="menu" (click)="show=!show" id="rigisterBtn">Register</button>
+                                <mat-menu #menu="matMenu" >
+                                  <button mat-menu-item (click)="onSignin()" >Sign in</button>
+                                  <button mat-menu-item (click)="onSignup()" >Sign up</button>
+                                </mat-menu>
+                        </li>
+                    </ul>
+                </div>
+    
+        </div>
+    </nav>
+    
+</div> -->
+<!-- 
+<div style="z-index: 10; position: absolute">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+    <div class="container">
+        <ul id="gn-menu" class="gn-menu-main">
+            <li class="gn-trigger">
+                <a class="gn-icon gn-icon-menu" #gnIcon (click)="onClickMenu($event)"
+                    (mouseenter)="onmouseMenu($event)">
+                    <span>Menu</span>
+                </a>
+                <nav class="gn-menu-wrapper" #gnWrapper (mouseenter)="onmouseWrapper($event)">
+            <li *ngIf="checkAuthentication()" style=" background-color: #5651a7">
+                <span style="font-size: 30px; color: white">{{uname | async}}</span>
+            </li>
+            <div class="gn-scroller">
+                <ul class="gn-menu">
+
+                    <ul class="gn-submenu" *ngIf="(isAdmin | async)">
+                        <li>
+                            <a (click)="onNewProduct()">
+                                <img src="../../assets/images/icons8-plus-50.png" style="width: 26px"
+                                    class="nav-li-icon">
+                                New Product
+                            </a>
+                        </li>
+                        <li>
+                            <a (click)="onAllProduct()">
+                                <img src="../../assets/images/icons8-list-of-thumbnails-30.png" class="nav-li-icon">
+                                Preview Products
+                            </a>
+                        </li>
+                        <li>
+                            <a (click)="onExpiredProduct()">
+                                <img src="../../assets/images/icons8-expired-26.png" class="nav-li-icon">
+                                Expired Products
+                            </a>
+                        </li>
+                    </ul>
+
+                    <li>
+                        <a (click)="onShopCart()">
+                            <img src="../../assets/images/icons8-shopping-cart-26.png" class="nav-li-icon">
+                            Shop Cart
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <img src="../../assets/images/icons8-edit-26.png" class="nav-li-icon">
+                            Edit Account
+                        </a>
+                    </li>
+                    <li>
+                        <a><img src="../../assets/images/icons8-help-26.png" class="nav-li-icon">
+                            Help
+                        </a>
+                    </li>
+
+
+
+                    <li *ngIf="checkAuthentication()">
+                        <a (click)="onLogout()">
+                            <img src="../../assets/images/icons8-exit-26.png" class="nav-li-icon">
+                            Log out
+                        </a>
+
+                    </li>
+
+
+                </ul>
+            </div>
+            </nav>
+            </li>
+
+            <li *ngIf="checkAuthentication()">
+                <a class="codrops-icon codrops-icon-prev">
+                    <span>
+                        <app-notification></app-notification>
+                    </span>
+                </a>
+            </li>
+
+            <div class="wrap">
+                <div class="search">
+                    <input type="text" class="searchTerm" #search (input)="onSearchProduct(search.value)"
+                        placeholder="What are you looking for?">
+
+                </div>
+            </div>
+
+
+
+            <li><a style="background-color: #5651a7; color: white" routerLink="/">RM</a>
+            </li>
+
+            <li *ngIf="!checkAuthentication()">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown ml-auto">
+                        <button mat-button [matMenuTriggerFor]="menu" (click)="show=!show"
+                            id="rigisterBtn">Register</button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="onSignin()">Sign in</button>
+                            <button mat-menu-item (click)="onSignup()">Sign up</button>
+                        </mat-menu>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div> -->
+
+<div data-component="navbar">
+
+  <nav class="navbar p-0 fixed-top">
+ 
+    <a class="navbar-brand px-1" style="cursor: pointer" (click)="openSidebar()"  *ngIf="collaps_expand_sidebar">
+      <i class="fas fa-bars" style="color: #FFF" *ngIf="!show_hide_sidebar"></i>
+      <i class="fas fa-times" style="color: #FFF" *ngIf="show_hide_sidebar"></i>
+    </a>
+    <div style="margin-left:auto; margin-right:0">
+       
+
+      <div class="right-links float-right">
+          <a routerLink='/' class="home" >
+              <i class="fa fa-home mr-3">
+                Rezk Market
+              </i>
+            </a>
+
+       
+
+
+
+      </div> <!-- /.right-links -->
+
+    </div>
+
+
+
+
+
+
+
+
+
+  </nav>
+</div> <!-- END TOP NAVBAR -->
+
+
+
+<div data-component="sidebar"  *ngIf="show_hide_sidebar">
+  <div class="sidebar">
+    <ul class="list-group flex-column d-inline-block first-menu">
+      <li class="list-group-item pl-3 py-2 text-center">
+        <a>
+          <img style="border-radius: 50px !important;
+              width: 40px !important;"
+            [src]="transform()"
+            (click)="onChangePictur()">
+
+
+        </a>
+
+      </li> <!-- /.list-group-item -->
+      <hr style="color: #FFF; border-width: 1px; background-color: #FFF;">
+
+      <li class="list-group-item pl-3 py-2">
+        <a  [routerLink]="['/']">
+
+        
+            <i class="fa fa-home mr-3">
+          
+
+            <span class="ml-2 align-middle" class="ml-2 align-middle">Home</span></i></a>
+
+      </li>
+
+      <li class="list-group-item pl-3 py-2">
+        <a href="#">
+          <i class="fa fa-bell"><span class="ml-2 align-middle">Notifications</span>
+            </i>
+        </a>
+
+      </li>
+
+    <li class="list-group-item pl-3 py-2">
+        <a [routerLink]="['/message']">
+            <i class="fa fa-envelope" >
+                <span class="ml-2 align-middle">Messages</span>
+            </i>
+        </a>
+    </li>
+
+      <li class="list-group-item pl-3 py-2">
+        <a (click)="onShopCart()">
+          <i class="fas fa-shopping-cart">
+            <span class="ml-2 align-middle">Cart</span>
+          </i>
+        </a>
+      </li>
+
+      
+      <li class="list-group-item pl-3 py-2" *ngIf="(isAdmin | async)">
+        <a>        
+          <i class="fas fa-cog">
+            <span class="ml-2 align-middle">Settings</span>
+          </i>
+        </a>
+        <ul class="list-group flex-column d-inline-block submenu">
+          
+          <li class="list-group-item pl-4">
+            <a (click)="onNewProduct()">
+                <i class="fas fa-plus-circle">
+                    <span class="ml-2 align-middle">New Product</span>
+                </i>
+              </a>    
+          </li> 
+          <li class="list-group-item pl-4">
+              <a (click)="onExpiredProduct()">
+                  <i class="fas fa-clock">
+                      <span class="ml-2 align-middle">Expired Product</span>
+                  </i>
+                </a>    
+            </li>
+
+          <li class="list-group-item pl-4">
+              <a (click)="onAllProduct()">
+                  <i class="fab fa-product-hunt">     
+                     <span class="ml-2 align-middle">Manage Product</span>
+                </i>
+              </a>     
+            </li>           
+        </ul>
+      </li>
+
+     
+    <li class="list-group-item pl-3 py-2">
+        <a [routerLink]="['/']" (click)="onSearch()">
+            <i class="fas fa-search">
+                <span class="ml-2 align-middle">Search</span>
+            </i>
+        </a>
+    </li>
+
+    <li class="list-group-item pl-3 py-2" *ngIf="checkAuthentication()">
+        <a (click)="onLogout()">
+            <i class="fas fa-sign-out-alt">
+                <span class="ml-2 align-middle">Log out</span>
+            </i>
+        </a>
+    </li>
+
+    
+    <li class="list-group-item pl-3 py-2" *ngIf="!checkAuthentication()">
+        <a>
+            <i class="fa fa-sign-in" aria-hidden="true">
+
+            <span class="ml-2 align-middle">Rigester</span>
+          </i>
+        </a>
+        <ul class="list-group flex-column d-inline-block submenu">
+    
+          <li class="list-group-item pl-4">
+            <a (click)="onSignin()">
+                <i class="fa fa-sign-in" aria-hidden="true">
+                    <span class="ml-2 align-middle">Sign in</span>
+                </i>
+              </a>    
+          </li> 
+          <li class="list-group-item pl-4">
+              <a (click)="onSignup()">
+                <i class="fa fa-sign-in" aria-hidden="true">
+                      <span class="ml-2 align-middle">Sign up</span>
+                  </i>
+                </a>    
+            </li>
+
+               
+        </ul>
+      </li>
+
+
+    </ul> <!-- /.first-menu -->
+  </div> <!-- /.sidebar -->
+</div>

@@ -1,0 +1,90 @@
+
+ <!-- <div *ngIf="err">{{message}}</div> -->
+
+<!--<div class="row">
+  <div class="col-md-4">
+    <form (ngSubmit)="onSignin(f)" #f="ngForm">
+      <div class="form-group">
+        <label for="email"> Email </label>
+        <input class="form-control" type="email" id="email" name="email" ngModel>
+        <label for="password">Password</label>
+        <input class="form-control" type="password" id="password" name="password" ngModel>
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Signin</button>
+    </form>
+  </div>
+</div> -->
+
+<!-- <div class="login-page">
+  <div class="login-spacer"></div>
+  <div class="login-container">
+    <div id="login-fab" class="mdl-color--accent mdl-color-text--white">
+      <i id="lock-icon" class="material-icons">lock</i>
+    </div>
+    <h2 class="card-heading">
+      User Login
+    </h2>
+    <form class="login-form" #f='ngForm'(ngSubmit)='onSignin(f)'>
+      <mat-form-field >
+        <input matInput placeholder="Email" name="email" ngModel>
+      </mat-form-field>    
+      <mat-form-field>
+        <input matInput type='password' placeholder="Password" name="password" ngModel>
+      </mat-form-field>
+      <div class="buttons">
+        <div class="login">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!f.valid">Login</button>
+        </div>
+      </div>
+    </form>
+    <div class="buttons">     
+      <div class="register">
+        <button mat-raised-button color="primary">Register</button>
+        <button mat-button color="primary">Forgot Password</button>
+      </div>      
+    </div>
+  </div>
+</div> -->
+
+<!-- <div class="login-page">
+    <div class="login-container">
+        <form class="login-form" #f='ngForm'(ngSubmit)='onSignin(f)'>
+          <mat-form-field>
+            <input matInput type="email" placeholder="@email" name="email" ngModel>
+          </mat-form-field>
+        
+          <mat-form-field >
+            <input matInput type="password" placeholder="password" name="password" ngModel>
+          </mat-form-field>
+          <div class="row">
+            <div class="col-md-9">
+               <div class="buttons">
+                   <button mat-raised-button color="primary" type="submit" [disabled]='!f.valid' id="logBtn">login</button>
+                 </div>
+            </div>
+            <div class="col">
+               <a [routerLink]="['/signup']" id="anch">sign up</a>
+            </div>
+       </div>
+          
+          
+        </form>
+        
+      </div>
+</div> -->
+
+<div class="form-style-5">
+  <form #f='ngForm' (ngSubmit)='onSignin(f)'>
+    <fieldset>
+      <legend>Login Info</legend>
+      <input matInput type="email" placeholder="@email" name="email" ngModel>
+
+      <input matInput type="email" placeholder="password" name="password" ngModel>
+
+    </fieldset>
+
+    <button type="submit" mat-flat-button color="primary" style="margin: 10px 0;">Log in</button>
+    <a [routerLink]="['/signup']" id="anch" style="margin-left: 50%">sign up</a>
+  </form>
+  
+</div>

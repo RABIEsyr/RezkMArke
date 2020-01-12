@@ -1,0 +1,88 @@
+#div1 {
+     // height: 530px;
+    // overflow-y: auto;
+    position: relative;
+    
+}
+.mat-horizontal-content-container {
+  height: 600px;
+}
+#customers {
+    border-collapse: collapse;
+    width: 100%;
+    border-spacing: 0;
+    border: none;
+    height: 200px;
+    position: relative;
+  }
+  
+  #customers td, #customers th {
+    padding: 20px;
+    margin-top: 20px;
+    color: black;
+    text-align: center;
+  }
+  
+  #customers tr:nth-child(even){background-color: transparent; text-align: center;}
+  #customers tr:nth-child(odd){background-color: transparent; text-align: center;}
+
+  #customers tr:hover {background-color: rgb(247, 242, 245);}
+  
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin: 0;
+    text-align: center;
+    background-color: #5651a7;
+    color: rgb(247, 242, 245);
+  }
+
+  #cutom-th {
+  //  position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+//  ::ng-deep .mat-menu-panel {
+//     max-height: 40px !important;
+//     max-width: 40px !important;   
+//   }
+
+
+  .span1 {
+    background-color: #CC0099;
+    padding: 0 9px;
+    text-align: center;
+  }
+
+  .span1:hover {
+    background-color: rgb(44, 0, 204);
+    padding: 0 9px;
+  }
+
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0;
+  }
+
+//  ::ng-deep .mat-flat-button {
+//     padding: 0 !important;
+//     width: 4px !important;
+//     height: 4px !important;
+//     color: white !important;
+//   }
+
+
+  input[type=number] {
+    text-align: center;
+  }
+
+ .btn1 {
+   margin-top: 20px;
+   margin-left: 100px;
+ }
+
+ 
+
+ 

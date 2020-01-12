@@ -1,0 +1,19 @@
+
+
+.myBtn {
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate( -50%, -50%);
+    color: #FFF;
+	// margin: 0 auto;
+	 background: #5651a7;
+	 font-size: 18px;
+	 text-align: center;
+	// font-style: normal;
+	// width: 100%;
+	 border: 1px solid #5651a7;
+	 border-width: 1px 1px 3px;
+	 margin-bottom: 10px;
+	 border-radius: 10px;
+}

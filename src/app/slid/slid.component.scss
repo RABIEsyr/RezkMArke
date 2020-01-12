@@ -1,0 +1,38 @@
+.example-container {
+    width: 70%;
+    height: 545px;
+    border: 1px solid rgba(0, 0, 0, 0.5) ;
+    border-radius: 10;
+    border-style: double;
+    background-color: rgb(192,192,192);
+
+  }
+  
+  .example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .myClassSlide {
+    margin-bottom: 15px;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.5); 
+  }
+
+  .mat-flat-button .mat-button-wrapper {
+    margin-left: 20px
+  }
+ 
+
+  #btnlogout {
+     margin-top: 290px;
+    // padding: 0;
+     margin-bottom: 0px;
+  }
+  button:not(:disabled), [type="button"]:not(:disabled) {
+    padding: 0;
+  }
+
+  

@@ -1,0 +1,56 @@
+table {
+    width: inherit;
+    height: 416px;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+}
+
+#divid {
+  margin-top: 100px;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 0px;
+  right: auto;
+}
+
+/* My style */
+
+#mat-icon1 {
+  background-image: url("../../../assets/images/baseline_edit_black_18dp.png");
+  margin-left: 30%;
+}
+
+#mat-icon2 {
+  background-image: url("../../../assets/images/baseline_delete_black_18dp.png");
+  margin-left: 30%;
+}
+
+#menudrop {
+  width: 10px;
+}
+
+// ::ng-deep .mat-menu-item:focus {
+//   background-color: #5651a7;
+//   color: #5651a7;
+//   opacity: 1;
+// }
+
+ .mat-menu-item:hover {
+  background-color: #5651a7;
+  color: #5651a7;
+  // opacity: 1;
+}
+
+
+.mat-form-field-infix {
+  
+    left: 20px;
+}
+

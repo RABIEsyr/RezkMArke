@@ -1,0 +1,46 @@
+<table id="customers">
+  <tr>
+    <th id="cutom-th">Title</th>
+    <th id="cutom-th">Quqntity</th>
+    <th id="cutom-th">Unit Price</th>
+    <th id="cutom-th"></th>
+    <th id="cutom-th"></th>
+  </tr>
+  <tr *ngFor="let product of productCart; trackBy: truckFunc">
+    <td>{{ product.name }}</td>
+    <td>
+      <span>
+        <span>
+          <button mat-mini-fab style="background-color: #5651a7"
+            (click)="onMinus(product['_id'])">-</button>
+        </span>
+        <span>
+          <input type="number" style="
+                         width: 44px;
+                         color: inherit;
+                         background-color: inherit;
+                         border: none;
+                         "disabled [(ngModel)]="product.count" #count>
+        </span>
+        <span style="color: #5651a7">
+          <button mat-mini-fab style="background-color: #5651a7"
+            (click)="onPlus(product['_id'])">+</button>
+        </span>
+      </span>
+    </td>
+    <td>{{ product.price | currency }}</td>
+    <td>
+      <span style="cursor: pointer;" (click)="onDelete(product['_id'])">
+        <img src="../../../assets/images/baseline_delete_black_18dp.png">
+      </span>
+    </td>
+    <td>
+      <span style="cursor: pointer;" (click)="onDetails(product)">
+        <img src="../../../assets/images/baseline_info_black_18dp.png">
+      </span>
+    </td>
+  </tr>
+</table>
+<div>
+  <button mat-flat-button color="primary" class="btn1" (click)="onContinue()">Submit</button>
+</div>

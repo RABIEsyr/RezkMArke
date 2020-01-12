@@ -1,0 +1,78 @@
+<!-- <div style="margin-top: 100px" >
+  <input [(ngModel)]="message" (keyup)="$event.keyCode == 13 && sendMessage()" />
+  <button (click)="sendMessage()">Send</button>
+</div> -->
+
+<body>
+<div class="container" >
+<h3 class=" text-center">Messaging</h3>
+<div class="messaging">
+      <div class="inbox_msg">
+        <div class="inbox_people">
+          
+        <div class="col" *ngIf="isAdmin()">
+          <div class="headind_srch">
+            <div class="recent_heading">
+              <h4>Recent</h4>
+            </div>
+            <div class="srch_bar" *ngIf="isAdmin()">
+              <div class="stylish-input-group">
+                <input type="text" class="search-bar"  placeholder="Search" >
+                <span class="input-group-addon">
+                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                </span> </div>
+            </div>
+          </div>
+          <div class="inbox_chat" *ngIf="isAdmin()">
+            <div class="chat_list active_chat"  *ngFor="let message of messages" >
+              <div class="chat_people" style="cursor: pointer;" (click)="onGetClientMesseges(message.from)">
+                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                <div class="chat_ib">
+                  <h5>{{message.from.name}}<span class="chat_date">{{message.date | date}}</span></h5>
+                  <p>{{message.content}}</p>
+                </div>
+              </div>
+            </div>
+        </div>
+                        
+          </div>
+        </div>
+
+        <div class="col" style="width: 100%;">
+          <div class="mesgs">
+            <div class="msg_history">
+              <div *ngFor="let msg of userMessages">
+              <div class="incoming_msg" *ngIf="(msg | async).check">
+                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                <div class="received_msg">
+                  <div class="received_withd_msg">
+                    <p>{{ (msg | async).content }}</p>
+                    <span class="time_date"> 11:01 AM    |    June 9</span></div>
+                </div>
+              </div>
+              <div class="outgoing_msg" *ngIf="!(msg | async).check">
+                <div class="sent_msg">
+                  <p>{{ (msg | async).content }}</p>
+                  <span class="time_date"> 11:01 AM    |    June 9</span> </div>
+              </div>
+            </div>
+            </div>
+            <div class="type_msg">
+              <div class="input_msg_write">
+                <!-- <input type="text" class="write_msg" placeholder="Type a message" />
+                <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button> -->
+  
+                <input [(ngModel)]="message"  class="write_msg"  (keyup)="$event.keyCode == 13 && sendMessage()"  placeholder="Type a message"/>
+                <button (click)="sendMessage()" class="msg_send_btn"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+    </div>
+  </div>
+    </body>

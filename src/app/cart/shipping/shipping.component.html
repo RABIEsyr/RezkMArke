@@ -1,0 +1,53 @@
+<!-- <div class="container">
+    <form #f='ngForm' (ngSubmit)="onSubmit(f)">
+        <div>
+
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>User name</mat-label>
+                    <input matInput [placeholder]="userName" [value]="userName" name="uname" [(ngModel)]='userName'
+                        disabled>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>City</mat-label>
+                    <input matInput placeholder="city" name="city" ngModel>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Street</mat-label>
+                    <input matInput placeholder="street number" name="street" ngModel>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Phone</mat-label>
+                    <input matInput placeholder="Phone Number" name="phone" ngModel>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+
+<button mat-raised-button color=primary type="submit">Submit</button>
+ -->
+ <div class="form-style-5">
+    <form #f='ngForm' (ngSubmit)="onSubmit(f)">
+    <fieldset>
+    <legend><span class="number">#</span> Shipping Info</legend>
+    <input type="text" name="field1" placeholder="Your Name *" name="uname" [(ngModel)]='userName'>
+    <input type="email"  placeholder="City *" name="city" ngModel>
+    <input type="email"  placeholder="City *" name="city" ngModel>
+
+    <input type="email"  placeholder="Phone Number *" name="phone" ngModel>
+ 
+    </fieldset>
+    
+    <button type="submit" mat-flat-button color="primary">submit</button>
+    </form>
+    </div>

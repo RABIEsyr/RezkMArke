@@ -1,0 +1,69 @@
+
+
+<!-- <form #f="ngForm" (ngSubmit)="onSignup(f)" class="form-signin">
+
+  <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+
+  <label for="inputName" class="sr-only">Your Name</label>
+  <input type="text" id="inputName" ngModel name="name" class="form-control" placeholder="Your name" required autofocus>
+
+
+  <label for="inputEmail" class="sr-only">Email address</label>
+  <input type="email" id="inputEmail" ngModel name="email" class="form-control" placeholder="Email address" required
+    autofocus>
+
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password" ngModel name="password" id="inputPassword" class="form-control" placeholder="Password"
+    required>
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+
+  <h1><a [routerLink]="['/login']">sign in</a> </h1>
+</form> -->
+
+<!-- <div class="login-page">
+  <div class="login-container">
+    <form class="login-form" #f='ngForm' (ngSubmit)='onSignup(f)'>
+      <mat-form-field>
+        <input matInput type="text" placeholder="name" name="name" ngModel>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="email" placeholder="@email" name="email" ngModel>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="password" placeholder="password" name="password" ngModel>
+      </mat-form-field>
+      <div class="row">
+           <div class="col-md-9">
+              <div class="buttons">
+                  <button mat-raised-button color="primary" type="submit" [disabled]='!f.valid' id="logBtn">Register</button>
+                </div>
+           </div>
+           <div class="col">
+              <a [routerLink]="['/signin']" id="anch">sign in</a>
+           </div>
+      </div>
+    </form>
+  </div>
+  
+</div> -->
+
+<div class="form-style-5">
+  <form #f='ngForm' (ngSubmit)='onSignup(f)'>
+    <fieldset>
+        <legend>Account Info</legend>
+      <input matInput type="text" placeholder="name" name="name" ngModel>
+
+      <input matInput type="email" placeholder="@email" name="email" ngModel>
+
+      <input matInput type="email" placeholder="password" name="password" ngModel>
+
+
+    </fieldset>
+
+    <button type="submit" style="margin: 10px 0;" mat-flat-button color="primary">Sign up</button>
+    <a [routerLink]="['/signin']" id="anch" style="margin-left: 50%">sign in</a>
+
+  </form>
+</div>

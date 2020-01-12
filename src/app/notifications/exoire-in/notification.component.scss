@@ -1,0 +1,23 @@
+.notification {
+    // background-color: rgb(248, 245, 250);
+    // color: rgb(248, 245, 250);
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    border-radius: 40%
+  }
+  
+  .notification:hover {
+    background: rgb(235, 227, 227);
+  }
+  
+  .notification .badge {
+    margin-top: 10px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background-color: rgb(51, 49, 49);
+    color: white;
+  }

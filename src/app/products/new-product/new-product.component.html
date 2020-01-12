@@ -1,0 +1,275 @@
+<notifier-container></notifier-container>
+
+<!-- <div class="container custom-container">
+      <form #f="ngForm" (ngSubmit)='submitAddProduct(f)' style="margin-top: 100px;">
+  
+        
+          <div>
+            <mat-form-field class="example-full-width" style="width: 100px;">
+              <input matInput placeholder="Product Name" name="productName" [(ngModel)]="editName">
+            </mat-form-field>
+          </div>
+        
+            
+       
+
+        
+          <div >
+              <mat-form-field style="width: 100px">
+                  <input matInput [matDatepicker]="picker" placeholder="Date" (dateInput)="addEvent('input', $event)" name="date"
+                    [(ngModel)]="editExpireIn">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+          </div>
+       
+  
+        
+          <div class="float:right" >
+            <mat-form-field class="example-full-width" style="width: 100px">
+              <input matInput placeholder="Image url" name="imageUrl" [(ngModel)]="editImageUrl">
+            </mat-form-field>
+            <img [src]="editImageUrl" alt="unloaded" style="width: 230px;margin-left: 250px;">
+
+          </div>
+       
+  
+            
+              <div >
+                <mat-form-field style="width: 100px">
+                  <input matInput placeholder="Price" type="number" class="example-right-align" name="price"
+                    [(ngModel)]="editPrice">
+                  <span matPrefix>$&nbsp;</span>
+                  <span matSuffix>.00</span>
+                </mat-form-field>
+              </div>
+           
+  
+  
+  
+            <div>
+              <mat-progress-spinner *ngIf="hideCategory" [mode]="mode">
+              </mat-progress-spinner>
+  
+              <mat-form-field style="width: 100px" [ngClass]="{'hidden': hideCategory}" >
+                <mat-label>Category</mat-label>
+  
+                <mat-select #newCategoryOption name="categoryId" [(ngModel)]="editCategory">
+                  <mat-option>None</mat-option>
+                  <mat-option value="add_new_category">add Category</mat-option>
+                  <span *ngFor="let category of categories">
+                    <mat-option [value]="category._id">{{category.type}}</mat-option>
+                  </span>
+                </mat-select>
+              </mat-form-field>
+  
+              <div *ngIf="newCategoryOption.value=='add_new_category'">
+                <mat-form-field class="example-full-width" style="width: 100%">
+                  <input matInput #newCategory>
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="button" (click)="addNewCategory(newCategory.value)">
+                  new category
+                </button>
+              </div>
+            </div>
+  
+            <div>
+              <mat-form-field appearance="outline" style="width:100px">
+                <mat-label>Quantity</mat-label>
+                <input matInput type="number" min="1" name="quantity" [(ngModel)]="editQuantity">
+              </mat-form-field>
+            </div>
+  
+            <button mat-fab color="primary" type="submit" >
+              <ng-container *ngIf="onMode(); else elseTemplate">
+                <span style="font-size: 40px">+</span>
+              </ng-container>
+              <ng-template #elseTemplate>
+                edit
+              </ng-template>
+  
+            </button>
+         
+  
+  
+  
+          
+        
+      </form>
+   
+
+</div> -->
+
+
+
+
+<!-- --------------------------------------- -->
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+   <form #f="ngForm" (ngSubmit)='submitAddProduct(f)'>
+      <table class="table table-striped">
+         <tbody>
+           
+            <tr>
+
+               
+
+               <td colspan="1">
+                  <form class="well form-horizontal">
+                     <fieldset>
+                        <div class="form-group">
+                           <label class="col-md-4 control-label">Title</label>
+                           <div class="col-md-8 inputGroupContainer">
+                              <div class="input-group"><span class="input-group-addon">
+                                    <i class="fab fa-product-hunt"></i>
+                                 </span><input id="fullName"  placeholder="Product Title"
+                                    class="form-control" required="true"  type="text"
+                                    name="productName" [(ngModel)]="editName"></div>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label class="col-md-4 control-label">Price</label>
+                           <div class="col-md-8 inputGroupContainer">
+                              <div class="input-group"><span class="input-group-addon">
+                                    <i class="fas fa-dollar-sign"></i>
+                                 </span>
+                                 <input id="addressLine1" 
+                                   placeholder="0"
+                                   name="price"
+                                   [(ngModel)]="editPrice"
+                                   class="form-control" required="true"  type="text"></div>
+                           </div>
+                        </div>
+
+                        <div class="form-group">
+                           <label class="col-md-4 control-label">Image Url</label>
+                           <div class="col-md-8 inputGroupContainer">
+                              <div class="input-group">
+                                 <span class="input-group-addon">
+                                    <i class="far fa-image"></i>
+                                 </span>
+                                 <input id="city" 
+                                    name="imageUrl" [(ngModel)]="editImageUrl"
+                                    placeholder="http://image-url" class="form-control" required="true"
+                                    >
+                                    <img *ngIf="editImageUrl" [src]="editImageUrl"
+                                    style="max-height: 300px;"
+                                     alt="unloaded" class="img-thumbnail">
+                              </div>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label class="col-md-4 control-label">Expired Date</label>
+                           <div class="col-md-8 inputGroupContainer">
+                              <div class="input-group">
+                                 <span class="input-group-addon">
+                                    <i class="fas fa-clock"></i>
+                                 </span>                                
+                                 <div class="row">
+                                    <div class="col-md-5">
+                                       <input matInput style="height: 44px;" class="form-control"
+                                          [matDatepicker]="picker" placeholder="Date"
+                                          (dateInput)="addEvent('input', $event)" name="date"
+                                          [(ngModel)]="editExpireIn">
+                                    </div>
+                                    <div class="col-md-3">
+                                       <mat-datepicker-toggle matSuffix [for]="picker">
+
+                                       </mat-datepicker-toggle>
+                                       <mat-datepicker #picker></mat-datepicker>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="form-group">
+                           <label class="col-md-4 control-label">Category</label>
+                           <div class="col-md-8 inputGroupContainer">
+                              <div class="input-group">
+                                 <span class="input-group-addon" style="max-width: 100%;">
+                                    <i class="glyphicon glyphicon-list"></i></span>
+                                 <select newCategoryOption class="selectpicker form-control" #newCategoryOption
+                                    name="categoryId" [(ngModel)]="editCategory">
+
+                                    <option>None</option>
+                                    <option [value]="'add_new_category'">add Category</option>
+                                    <span *ngFor="let category of categories">
+                                       <option [value]="category._id">{{category.type}}</option>
+                                    </span>
+                                 </select>
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class=" form-group" *ngIf="newCategoryOption.value=='add_new_category'">
+                              <label class="col-md-4 control-label">New Category</label>
+                              <div class="col-md-8 inputGroupContainer">
+                                 <div class="input-group">
+                                    <span class="input-group-addon">
+                                       <i class="fas fa-male"></i>
+                                    </span>
+                                    <input style=" height: 36px;" matInput #newCategory>
+                                    <button 
+                                       style="margin-left: 10px;
+                                       border-radius: 10px;
+                                       width: 30px;"
+                                       mat-raised-button color="accent" type="button"
+                                       (click)="addNewCategory(newCategory.value)">
+                                       Add
+                                    </button>
+                                 </div>
+                              </div>
+                           </div>
+                        
+                           
+                       
+
+
+
+                        <div class="form-group">
+                           <label class="col-md-4 control-label">Added By</label>
+                           <div class="col-md-8 inputGroupContainer">
+                              <div class="input-group">
+                                 <span class="input-group-addon">
+                                    <i class="fas fa-male"></i>
+                                 </span><input id="email" name="email" placeholder="Rabie" class="form-control"
+                                    required="true"  type="text"></div>
+                           </div>
+                        </div>
+
+                        <div class="form-group">
+                           <label class="col-md-4 control-label">Quantity</label>
+                           <div class="col-md-8 inputGroupContainer">
+                              <div class="input-group"><span class="input-group-addon"><i
+                                       class="glyphicon glyphicon-earphone"></i></span>
+                                       <input id="phoneNumber"
+                                       name="quantity" [(ngModel)]="editQuantity" class="form-control" required="true"
+                                     type="text"></div>
+                           </div>
+                        </div>
+                     </fieldset>
+                  </form>
+               </td>
+
+            </tr>
+            <tr style="text-align: center">
+               <button mat-fab color="primary" type="submit">
+                  <ng-container *ngIf="onMode(); else elseTemplate">
+                     <span style="font-size: 40px">+</span>
+                  </ng-container>
+                  <ng-template #elseTemplate>
+                     edit
+                  </ng-template>
+               </button>
+            </tr>
+         </tbody>
+      </table>
+   </form>
+</div>

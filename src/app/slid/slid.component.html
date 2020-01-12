@@ -1,0 +1,66 @@
+<div class="row">
+  <mat-drawer-container class="example-container" autosize [@divState]="currentState">
+
+    <div class="example-sidenav" mode="side">
+  
+      <button 
+          *ngIf="isAdmin"
+              class="myClassSlide"
+              type="button"
+              color="primary" 
+              mat-flat-button 
+              (click)="onNewProduct()">
+        New Product
+      </button>
+  
+  
+      <button
+         *ngIf="isAdmin"
+            class="myClassSlide"
+            type="button" 
+            color="primary" 
+            mat-flat-button 
+            (click)="onAllProduct()">
+        Preview Products
+      </button>
+  
+      <button 
+          *ngIf="isAdmin"
+             class="myClassSlide"
+             type="button" 
+             color="primary"
+             mat-flat-button
+             (click)="onExpiredProduct()">
+        Expired Products
+      </button>
+      
+      <button 
+             class="myClassSlide"
+             type="button" 
+             color="primary"
+             mat-flat-button
+             (click)="onShopCart()">
+             <i class="material-icons">
+              add_shopping_cart
+              </i>
+              
+       <span style="margin-left: 5px;">shop-cart</span>
+      </button>
+
+      <button
+            class="myClassSlide"
+            id="btnlogout"
+            type="button" 
+            color="accent" 
+            mat-flat-button 
+            (click)="onLogout()">
+            <i class="material-icons" style="margin-left: 3px">
+              input
+              </i>
+         <span style="margin-left: 5px;">Logout</span>
+      </button>
+        
+    </div>
+  
+  </mat-drawer-container>
+</div>
