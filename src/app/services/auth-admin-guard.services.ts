@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
 
 
-const admins = ['adnan@email.com', 'raga', 'Password 1111'];
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +15,8 @@ export class AuthAdminGuardService implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         const token = this.userService.getDecodedAccessToken(localStorage.getItem('token'));
         const email = token.user.email;
-        if (admins.includes(email)) {
+        const isAdmin = token.user.isAdmin;
+        if (isAdmin) {
             return true;
         } else {
             return false;

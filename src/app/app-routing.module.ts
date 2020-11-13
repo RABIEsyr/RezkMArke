@@ -1,3 +1,4 @@
+import { HistoryComponent } from './history/history.component';
 import { MessageComponent } from './message/message.component';
 import { ShopCartComponent } from './cart/shop-cart/shop-cart.component';
 import { AuthAdminGuardService } from './services/auth-admin-guard.services';
@@ -65,7 +66,14 @@ const routes: Routes = [
   },
   {
     path: 'message',
-    component: MessageComponent
+    component: MessageComponent,
+    canActivate: [AuthGuardService],
+    //runGuardsAndResolvers: 'always',
+  },
+  {
+    path: 'history',
+    component: HistoryComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: '',

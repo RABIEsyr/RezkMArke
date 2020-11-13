@@ -57,8 +57,19 @@ export class AllProductsComponent implements OnInit {
           imageUrl: product.imageUrl,
           category: product.category
         }
-      }
+      } 
     );
+  }
+
+  onDeleteProduct(row, index) {
+    console.log('delete', index);
+    this.productService.deleteProduct(row._id).subscribe(res =>{
+      if (res['success']) {
+        const inde = this.dataSource.data.indexOf(index);
+        this.dataSource.data.splice(index, 1);
+        this.dataSource._updateChangeSubscription();
+      }
+    });
   }
 
 }

@@ -1,0 +1,25 @@
+<div class="container" style="margin-top: 100px;">
+  
+  <mat-accordion *ngFor="let order of orders; let i=index; ">
+   
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          order {{i + 1}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{order.date |date:'short':'UTC'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="row" style="margin-left: 69%; font-size: large;">Unit Price</div>
+      <hr>
+      <div class="row" *ngFor="let product of order['products']">
+       <div class="col"> <p>{{product.name}}</p></div>
+       <div class="col">X</div>
+       <div class="col"> <p> {{product.price}}</p></div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</div>

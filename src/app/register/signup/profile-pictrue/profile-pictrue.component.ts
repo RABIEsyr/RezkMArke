@@ -11,16 +11,20 @@ import { GlobalService } from 'src/app/services/global.service';
 })
 export class ProfilePictrueComponent implements OnInit {
  @ViewChild('fileInput') el: ElementRef;
- imageUrl //= 'https://i.pinimg.com/236x/d6/27/d9/d627d9cda385317de4812a4f7bd922e9--man--iron-man.jpg';
+ imageUrl; //= 'https://i.pinimg.com/236x/d6/27/d9/d627d9cda385317de4812a4f7bd922e9--man--iron-man.jpg';
  editFile = true;
  removeUpload = false;
  registrationForm = this.fb.group({
   file: [null]
 });
 
-  public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3000/upload-photo', itemAlias: 'photo',
-   authToken: localStorage.getItem('token') });
-  submitted: boolean;
+public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3000/upload-photo', itemAlias: 'photo',
+authToken: localStorage.getItem('token') });
+
+// public uploader: FileUploader = new FileUploader({ url: 'http://localhost:3000/upload-photo', itemAlias: 'photo',
+// authToken: localStorage.getItem('token') });
+
+submitted: boolean;
 
    constructor(private userService: UserService, public fb: FormBuilder, private globalService: GlobalService,
     private cd: ChangeDetectorRef) {}

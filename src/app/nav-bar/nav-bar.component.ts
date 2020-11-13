@@ -36,8 +36,7 @@ export class NavBarComponent implements OnInit, DoCheck {
   collaps_expand_sidebar = true;
   show_hide_sidebar = false;
   imgPath;
-
-  
+  imageSantizer;
 
 
   constructor(private userService: UserService,
@@ -49,7 +48,19 @@ export class NavBarComponent implements OnInit, DoCheck {
     this.uname = userService.User;
    }
 
+   onNavHome() {
+    this.show_hide_sidebar = false;
+    this.router.navigate(['/']);
+   }
+   onNavMsg() {
+   this.show_hide_sidebar = false;
+    this.router.navigate(['/message']);
 
+    this.router.navigate(['/message'])
+    .then(() => {
+      window.location.reload();
+    });
+   }
 
   ngOnInit() {
     this.searchTerm.pipe(
@@ -75,21 +86,22 @@ export class NavBarComponent implements OnInit, DoCheck {
 
       this.userService.getProfilePicture()
         .subscribe(photo => {
-             console.log('photo11', photo);
             this.imgPath = photo;
-      });
-      
-      this.globalService.profilePicture.subscribe(photo => {
-        this.imgPath = photo;
+            this.imageSantizer =  of(this.sanitizer.bypassSecurityTrustResourceUrl(this.imgPath));
       });
 
-      this.socket.on('upload-photo', message => {
-        console.log('8877777', message);
+      this.globalService.profilePicture.subscribe(photo => {
+        this.imgPath = photo;
+        this.imageSantizer =  of(this.sanitizer.bypassSecurityTrustResourceUrl(this.imgPath));
       });
+
+      // this.socket.on('upload-photo', message => {
+      //   console.log('8877777', message);
+      // });
   }
-  transform() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.imgPath);
-}
+//   transform() {
+//       return this.sanitizer.bypassSecurityTrustResourceUrl(this.imgPath);
+// }
 
   ngDoCheck() {
     this.userService.openSlide.subscribe(slideOpenClose => {
@@ -97,6 +109,7 @@ export class NavBarComponent implements OnInit, DoCheck {
     });
     this.isAdmin = of(this.userService.isAdmin());
 
+   
   }
 
   toggleNavbar() {
@@ -117,13 +130,17 @@ export class NavBarComponent implements OnInit, DoCheck {
   }
 
   onLogout() {
+    this.show_hide_sidebar = false;
     localStorage.removeItem('token');
+    this.imgPath = null;
+    this.router.navigate(['']);
   }
 
   onSearchProduct(value, category?) {
+    this.show_hide_sidebar = false;
     this.searchTerm.next(value);
     console.log(4422, value);
-    //this.category = category;
+    // this.category = category;
    // console.log(category);
   }
 
@@ -134,14 +151,17 @@ export class NavBarComponent implements OnInit, DoCheck {
 
 
   onSignin() {
+    this.show_hide_sidebar = false;
     this.router.navigate(['/signin']);
   }
 
   onSignup() {
+    this.show_hide_sidebar = false;
     this.router.navigate(['/signup']);
   }
 
   onNavigateExpiredProduct() {
+    this.show_hide_sidebar = false;
     this.router.navigate(['/expired-product']);
   }
 
@@ -160,10 +180,12 @@ export class NavBarComponent implements OnInit, DoCheck {
  }
 
  onAllProduct() {
+  this.show_hide_sidebar = false;
   this.router.navigate(['/all-products']);
 }
 
 onNewProduct() {
+  this.show_hide_sidebar = false;
   this.router.navigate(['/new-product']);
 }
 
@@ -172,7 +194,10 @@ onExpiredProduct() {
 }
 
 onShopCart() {
-  this.router.navigate(['/shop-process']);
+  this.show_hide_sidebar = false;
+  this.router.navigate(['/shop-process']).then(() => {
+    window.location.reload();
+  });
 }
 
 openSidebar() {
@@ -180,11 +205,19 @@ openSidebar() {
 }
 
 onSearch() {
+  this.show_hide_sidebar = false;
   this.globalService.serachActive.next(true);
+  this.router.navigate(['/']);
 }
 
 onChangePictur() {
+  this.show_hide_sidebar = false;
   this.router.navigate(['/upload-photo']);
+}
+
+onHistory() {
+  this.show_hide_sidebar = false;
+  this.router.navigate(['/history'])
 }
 }
 

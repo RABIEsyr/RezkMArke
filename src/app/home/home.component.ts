@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, ViewChild, ElementRef, AfterViewChecked, HostListener, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, DoCheck, ViewChild, ElementRef, AfterViewChecked, HostListener, ViewEncapsulation, OnDestroy } from '@angular/core';
 
 
 import { ProductService } from './../services/product.service';
@@ -9,7 +9,7 @@ import { UserService } from '../services/user.service';
 import { GlobalService } from '../services/global.service';
 
 
-
+declare var $: any;
 
 @Component({
   selector: 'app-home',
@@ -17,12 +17,8 @@ import { GlobalService } from '../services/global.service';
   styleUrls: ['./home.component.scss'],
  // encapsulation: ViewEncapsulation.None
 })
-export class HomeComponent implements OnInit, AfterViewChecked, DoCheck {
-  constructor(private userService: UserService,
-     private productServcie: ProductService,
-     private readonly notification: NotifierService,
-     private shopService: ShoppingService,
-     private globalService: GlobalService) { }
+export class HomeComponent implements OnInit, AfterViewChecked, DoCheck, OnDestroy {
+  
   products = new Array<any>();
   prods = new Array();
   index = '2';
@@ -39,6 +35,13 @@ export class HomeComponent implements OnInit, AfterViewChecked, DoCheck {
   disabled = false;
   checked = false;
   isActiveSearch = false;
+  isBuy = false;
+
+  constructor(private userService: UserService,
+    private productServcie: ProductService,
+    private readonly notification: NotifierService,
+    private shopService: ShoppingService,
+    private globalService: GlobalService) { }
 
  @HostListener('input', ['$event.target.value'])
  onInput(value) {
@@ -57,16 +60,43 @@ export class HomeComponent implements OnInit, AfterViewChecked, DoCheck {
     .subscribe((p: []) => {
 
       this.products.push(...p);
-      this.products.map(prod => of(prod));
+      console.log(this.products)
+
+      this.shopService.getProductsFromCart().subscribe(ps => {
+        console.log('home-ps', ps['products']);
+
+        this.products.filter(item1 => {
+          ps['products'].some(item2 => {
+            if (item2._id === item1._id ) {
+              item1.count = item2.count;
+             return item1.exist = true;
+            } else {
+              return item1.exist = false;
+            }
+          });
+        });
+
+        for (let i = 0; i < ps['products'].length; i++) { 
+          console.log('33',ps['products'][i])
+        }
+
+
+        this.products.map(prod => of(prod));
+      });
+
+
     });
 
-    this.productServcie.productList.subscribe((p: any) => {
-     this.products = p;
-    });
+    // this.productServcie.productList.subscribe((p: any) => {
+    //  this.products = p;
+    // });
 
     this.globalService.serachActive.subscribe(cases => {
       this.isActiveSearch = cases;
     });
+
+   
+    
   }
 
   ngDoCheck() {
@@ -75,6 +105,10 @@ export class HomeComponent implements OnInit, AfterViewChecked, DoCheck {
 
   ngAfterViewChecked() {
     // this.scrollToBottom();
+  }
+
+  onAnimate() {
+    
   }
 
   onScrol() {
@@ -87,9 +121,29 @@ export class HomeComponent implements OnInit, AfterViewChecked, DoCheck {
 
       this.productServcie.getProducts(this.index)
       .subscribe((p: []) => {
-
+        for (let i = 0; i < p.length; i++) {
+          for (let j = 0; j < this.products.length; j++) {
+            if (p[i]['_id'] === this.products[j]._id) {
+              p.splice(i, 1);
+            }
+          }
+         }
         this.products.push(...p);
+
+        this.shopService.getProductsFromCart().subscribe(ps => {
+          this.products.filter(item1 => {
+            ps['products'].some(item2 => {
+              if (item2._id === item1._id ) {
+                item1.count = item2.count;
+               return item1.exist = true;
+              } else {
+                return item1.exist = false;
+              }
+            });
+          });
         this.products.map(prod => of(prod));
+        });
+
       });
 
     } else {
@@ -112,10 +166,58 @@ export class HomeComponent implements OnInit, AfterViewChecked, DoCheck {
     this.shopService.buyProduct(id).subscribe();
   }
 
-  catchBuyEvent(event: string) {
-    console.log(event);
-    this.shopService.buyProduct(event.toString()).subscribe();
+  catchBuyEvent(event) {
+    for (let i = 0; i < this.products.length; i++) {
+      if (this.products[i]._id === event) {
+        this.products[i].exist = true;
+        this.products[i].count = 1;
+      }
+    }
+    this.shopService.buyProduct(event).subscribe();
     this.notification.notify('success', 'Added To Cart');
+
+    //this.isBuy = true;
+   //setTimeout( function ()  {  this.isBuy = false; }.bind(this), 6000);
+
+    //   $('.add-to-cart').on('click', function () {
+    //   var cart = $('.shopping-cart');
+    //   var imgtodrag = $(this);
+    //   if (imgtodrag) {
+    //       var imgclone = imgtodrag.clone()
+    //           .offset({
+    //           top: imgtodrag.offset().top,
+    //           left: imgtodrag.offset().left
+    //       })
+    //           .css({
+    //           'opacity': '0.5',
+    //               'position': 'absolute',
+    //               'height': '150px',
+    //               'width': '150px',
+    //               'z-index': '100'
+    //       })
+    //           .appendTo($('body'))
+    //           .animate({
+    //           'top': cart.offset().top + 10,
+    //               'left': cart.offset().left + 10,
+    //               'width': 75,
+    //               'height': 75
+    //       }, 1000, 'easeInOutExpo');
+
+    //       setTimeout(function () {
+    //         (<any>$('.shopping-cart')).effect("shake", {
+    //               times: 2
+    //           }, 200);
+    //       }, 1500);
+
+    //       imgclone.animate({
+    //           'width': 0,
+    //               'height': 0
+    //       }, function () {
+    //           $(this).detach()
+    //       });
+    //   }
+    // });
+    
   }
 
   // trackFunc(index, item) {
@@ -159,5 +261,38 @@ export class HomeComponent implements OnInit, AfterViewChecked, DoCheck {
      return this.products.push(product);
     }
     });
+ }
+ onCloseSearch() {
+   this.isActiveSearch = false;
+ }
+ 
+ catchMinus(event) {
+   for (let i = 0; i < this.products.length; i++) {
+     if (this.products[i]._id === event) {
+       if (this.products[i].count === 1) {
+        this.shopService.deletProductFromCart(event).subscribe();
+        this.products[i].exist = false;
+       } else {
+        this.products[i].count--;
+        this.shopService.deletProductFromCart(event).subscribe();
+       }
+     }
+   }
+ 
+  
+ }
+
+ catchPlus(event) {
+  for (let i = 0; i < this.products.length; i++) {
+    if (this.products[i]._id === event) {
+       this.products[i].count++;
+       this.shopService.buyProduct(event).subscribe();
+    }
+  }
+
+ }
+
+ ngOnDestroy() {
+
  }
 }

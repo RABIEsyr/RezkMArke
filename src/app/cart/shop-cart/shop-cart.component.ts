@@ -40,11 +40,16 @@ export class ShopCartComponent implements OnInit {
   onMinus(_id) {
     for (const product of this.productCart) {
         if (product._id === _id) {
-          product.count--;
+          if (product.count > 1) {
+            product.count--;
+          } else {
+            this.onDelete(_id);
+          }
         }
       }
      this.totalPrice = this.countTotalPrice(this.productCart);
      this.shopService.totalPrice.next(this.totalPrice);
+     this.shopService.deletProductFromCart(_id).subscribe();
 
   }
 
@@ -56,6 +61,8 @@ export class ShopCartComponent implements OnInit {
       }
       this.totalPrice = this.countTotalPrice(this.productCart);
       this.shopService.totalPrice.next(this.totalPrice);
+      this.shopService.buyProduct(_id).subscribe();
+
 
   }
 

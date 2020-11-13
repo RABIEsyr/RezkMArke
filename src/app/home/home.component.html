@@ -7,22 +7,60 @@
 <div class="row" id="scrl" #scrollDiv appScroll (scroll)="onScrol()">
 
   <!-- <div class="col"></div> -->
- 
   
-  <input *ngIf="isActiveSearch" class="form-control" type="search" placeholder="Search" aria-label="Search"
-    style="margin-left: 79px;" (keyup)="onKeySearch($event)"/>
+  
+  <div *ngIf="isActiveSearch" class="container-fluid" >
+    <div class="row">
+      <div class="col-1 m-autox`">
+        <!-- <span 
+        style="cursor: pointer; background-color: blueviolet; border-radius: 20%;" 
+        (click)=onCloseSearch()>close
+      </span> -->
+      <button (click)="onCloseSearch()" type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      <div class="col">
+      <input  class="form-control" type="search" placeholder="Search" aria-label="Search"
+     (keyup)="onKeySearch($event)"/>
+    </div>
+  </div>
+  </div>
 
+    
   <div class="col" id="custtom-col">
+    
+    <div *ngIf="isBuy" class="row justify-content-center sticky-top">
+      <span *ngIf="isBuy"><i class="shopping-cart center block m-auto"></i></span>
+    </div>
+
     <div class="row" *ngIf="!isSearching">
+
       <ng-container *ngFor="let product of products; let i = index">
-        <app-custom-product-card class="example-card animated lightSpeedIn item-wrap " [imageUrl]="product['imageUrl']"
+        
+        <app-custom-product-card class="add-to-cart example-card animated lightSpeedIn item-wrap "
+        [attr.data-product-id]="product['_id']" 
+        [imageUrl]="product['imageUrl']"
+          [price]="product['price']" 
+          [name]="product['name']"
+          [id] = "product['_id']"
+          (buy_id) = "catchBuyEvent($event)"
+          [exist] =  "product['exist']" 
+          [count]= "product['count']"
+          (minus) = "catchMinus($event)"
+          (plus) = "catchPlus($event)"
+          >
+        </app-custom-product-card>
+
+        <!-- <app-custom-product-card class="add-to-cart example-card animated lightSpeedIn item-wrap "
+        [attr.data-product-id]="product['_id']" 
+        imageUrl="/{{product['imageUrl']}}"
           [price]="product['price']" 
           [name]="product['name']"
           [id] = "product['_id']"
           (buy_id) = "catchBuyEvent($event)"
           >
-
-        </app-custom-product-card>
+        </app-custom-product-card> -->
         <div *ngIf="(i+1) % 5 === 0" class="w-100">
           <hr>
         </div>

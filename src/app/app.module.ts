@@ -60,8 +60,13 @@ import { CustomProductCardComponent } from './products/custom-product-card/custo
  import { GlobalService } from './services/global.service';
 import { ProfilePictrueComponent } from './register/signup/profile-pictrue/profile-pictrue.component';
 import { MessageComponent } from './message/message.component';
+import { FilterProductComponent } from './products/filter-product/filter-product.component';
 
-const socketConfig: SocketIoConfig = {url: 'http://localhost:3000', options: {}};
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { HistoryComponent } from './history/history.component';
+
+const socketConfig: SocketIoConfig = {url: '', options: {}}; // {url: 'http://localhost:3000', options: {}};
+
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -129,7 +134,9 @@ const customNotifierOptions: NotifierOptions = {
     CustomProductCardComponent,
     //FileSelectDirective,
     ProfilePictrueComponent,
-    MessageComponent
+    MessageComponent,
+    FilterProductComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -156,7 +163,8 @@ const customNotifierOptions: NotifierOptions = {
     MatTableModule, MatTabsModule, MatToolbarModule, MatTooltipModule, ScrollingModule, DragDropModule,
     NotifierModule.withConfig(customNotifierOptions),
     SocketIoModule.forRoot(socketConfig),
-    FileUploadModule
+    FileUploadModule,
+    Ng2SearchPipeModule
   ],
   providers: [
     UserService,

@@ -1,3 +1,4 @@
+import { GlobalService } from 'src/app/services/global.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -12,7 +13,10 @@ import { FileUploader } from 'ng2-file-upload';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private userSevice: UserService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private userSevice: UserService,
+     private router: Router,
+      private route: ActivatedRoute,
+      private globalService: GlobalService) { }
   
   ngOnInit() {
   }
@@ -31,6 +35,12 @@ export class SignupComponent implements OnInit {
             localStorage.setItem('token', response['token']);
             this.router.navigate(['/upload-photo']);
       });
-  }
+      this.userSevice.getProfilePicture()
+      .subscribe(photo => {
+           console.log('photo11', photo);
+          this.globalService.profilePicture.next(photo);
+    });
+    }
+
 
 }

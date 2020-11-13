@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ShoppingService } from 'src/app/services/shopping.service';
 import { Shipping } from './../shipping/shipping.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -18,7 +19,7 @@ export class StepsComponent implements OnInit {
   isComleted1 = false;
   isComleted2 = false;
 
-  constructor(private shopService: ShoppingService) { }
+  constructor(private shopService: ShoppingService, private router: Router) { }
 
   ngOnInit() {
       this.shopService.totalPrice.subscribe(tP => {
@@ -40,8 +41,16 @@ export class StepsComponent implements OnInit {
     this.isComleted1 = true;
     console.log(888, index);
   }
-  
+
   onStepSelect (event) {
     console.log(event)
+  }
+
+  onFinish() {
+    this.shopService.submitBuy(this.total).subscribe((result) => {
+      if (result['success']) {
+        this.router.navigate(['/']);
+      }
+    });
   }
 }

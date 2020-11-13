@@ -190,38 +190,25 @@
 
 <div data-component="navbar">
 
-  <nav class="navbar p-0 fixed-top">
+  <nav class="navbar p-0 fixed-top shadow-lg lg  bg-white">
  
     <a class="navbar-brand px-1" style="cursor: pointer" (click)="openSidebar()"  *ngIf="collaps_expand_sidebar">
       <i class="fas fa-bars" style="color: #FFF" *ngIf="!show_hide_sidebar"></i>
       <i class="fas fa-times" style="color: #FFF" *ngIf="show_hide_sidebar"></i>
     </a>
-    <div style="margin-left:auto; margin-right:0">
+    <div  style="margin-left:auto; margin-right:0">
        
 
       <div class="right-links float-right">
+        <!-- <span><i class="shopping-cart"></i></span> -->
           <a routerLink='/' class="home" >
               <i class="fa fa-home mr-3">
                 Rezk Market
               </i>
             </a>
-
-       
-
-
-
       </div> <!-- /.right-links -->
 
     </div>
-
-
-
-
-
-
-
-
-
   </nav>
 </div> <!-- END TOP NAVBAR -->
 
@@ -232,38 +219,37 @@
     <ul class="list-group flex-column d-inline-block first-menu">
       <li class="list-group-item pl-3 py-2 text-center">
         <a>
-          <img style="border-radius: 50px !important;
+          <img *ngIf="checkAuthentication()" style="border-radius: 50px !important;
               width: 40px !important;"
-            [src]="transform()"
+            [src]="imageSantizer | async"
             (click)="onChangePictur()">
 
-
+            <img *ngIf="!checkAuthentication()" style="border-radius: 50px !important;
+            width: 40px !important;"
+          src="assets/profile-picture/img_avatar.png"
+          >
         </a>
 
       </li> <!-- /.list-group-item -->
       <hr style="color: #FFF; border-width: 1px; background-color: #FFF;">
+        <li class="list-group-item pl-3 py-2">
+            <a (click)="onNavHome()">
+                <i class="fa fa-home mr-3">
+                    <span class="ml-2 align-middle" class="ml-2 align-middle">Home</span>
+                </i>
+            </a>      
+        </li>
 
       <li class="list-group-item pl-3 py-2">
-        <a  [routerLink]="['/']">
-
-        
-            <i class="fa fa-home mr-3">
-          
-
-            <span class="ml-2 align-middle" class="ml-2 align-middle">Home</span></i></a>
-
-      </li>
-
-      <li class="list-group-item pl-3 py-2">
-        <a href="#">
-          <i class="fa fa-bell"><span class="ml-2 align-middle">Notifications</span>
+        <a (click)="onHistory()">
+          <i class="fas fa-clock"><span class="ml-2 align-middle">History</span>
             </i>
         </a>
 
       </li>
 
     <li class="list-group-item pl-3 py-2">
-        <a [routerLink]="['/message']">
+        <a (click)="onNavMsg()">
             <i class="fa fa-envelope" >
                 <span class="ml-2 align-middle">Messages</span>
             </i>
@@ -314,7 +300,7 @@
 
      
     <li class="list-group-item pl-3 py-2">
-        <a [routerLink]="['/']" (click)="onSearch()">
+        <a (click)="onSearch()">
             <i class="fas fa-search">
                 <span class="ml-2 align-middle">Search</span>
             </i>

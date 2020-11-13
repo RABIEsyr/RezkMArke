@@ -3,8 +3,8 @@
   <button (click)="sendMessage()">Send</button>
 </div> -->
 
-<body>
-<div class="container" >
+
+<div class="container" style="margin-top: 20px;;" >
 <h3 class=" text-center">Messaging</h3>
 <div class="messaging">
       <div class="inbox_msg">
@@ -17,16 +17,21 @@
             </div>
             <div class="srch_bar" *ngIf="isAdmin()">
               <div class="stylish-input-group">
-                <input type="text" class="search-bar"  placeholder="Search" >
-                <span class="input-group-addon">
-                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-                </span> </div>
+                <!-- <input type="text" class="search-bar"  placeholder="Search" > -->
+                <div class="row">
+                  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off">
+                 <i class="fa fa-search" aria-hidden="true" style="border:none; margin: auto;"></i> 
+                </div>
+                
+               </div>
             </div>
           </div>
           <div class="inbox_chat" *ngIf="isAdmin()">
-            <div class="chat_list active_chat"  *ngFor="let message of messages" >
+            <div class="chat_list active_chat"  *ngFor="let message of messages | filter:searchText" >
               <div class="chat_people" style="cursor: pointer;" (click)="onGetClientMesseges(message.from)">
-                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                <div class="chat_img"> <img [src]="'http://localhost:3000/profile-image/'+message.from._id+'.png'" alt="sunil"> </div>
+                <!-- <div class="chat_img"> <img [src]="'profile-image/'+message.from._id+'.png'" alt="sunil"> </div> -->
+
                 <div class="chat_ib">
                   <h5>{{message.from.name}}<span class="chat_date">{{message.date | date}}</span></h5>
                   <p>{{message.content}}</p>
@@ -43,17 +48,17 @@
             <div class="msg_history">
               <div *ngFor="let msg of userMessages">
               <div class="incoming_msg" *ngIf="(msg | async).check">
-                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                <div class="incoming_msg_img"> <img [src]="transform()" alt="sunil"> </div>
                 <div class="received_msg">
                   <div class="received_withd_msg">
                     <p>{{ (msg | async).content }}</p>
-                    <span class="time_date"> 11:01 AM    |    June 9</span></div>
+                    <span class="time_date"> {{ ((msg | async).date) | date:'medium'}}</span></div>
                 </div>
               </div>
               <div class="outgoing_msg" *ngIf="!(msg | async).check">
                 <div class="sent_msg">
                   <p>{{ (msg | async).content }}</p>
-                  <span class="time_date"> 11:01 AM    |    June 9</span> </div>
+                  <span class="time_date"> {{ ((msg | async).date) | date:'medium'}}</span> </div>
               </div>
             </div>
             </div>
@@ -75,4 +80,4 @@
       
     </div>
   </div>
-    </body>
+    

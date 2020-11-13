@@ -50,7 +50,7 @@ export class AppComponent implements OnInit, DoCheck {
   onResize(event) {
   this.innerWidth = window.innerWidth;
   this.globalService.windowWidth.next(this.innerWidth);
-  console.log(this.innerWidth)
+  console.log(this.innerWidth);
 }
 
 }

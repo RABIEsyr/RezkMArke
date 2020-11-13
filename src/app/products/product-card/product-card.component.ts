@@ -20,5 +20,8 @@ export class ProductCardComponent {
       this.price = data.price;
       this.imageUrl = data.imageUrl;
       this.quantity = data.quantity;
+
+      console.log('procu-card-componet', this.imageUrl)
     }
+    
 }

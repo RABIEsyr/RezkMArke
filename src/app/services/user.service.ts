@@ -4,7 +4,7 @@ import { Observable, Observer, Subject, of } from 'rxjs';
 
 import * as jwt_decode from 'jwt-decode';
 
-const url = 'http://localhost:3000/register'; // http://localhost:3000
+const url = 'register'; // http://localhost:3000/register
 
 @Injectable({
   providedIn: 'root'
@@ -59,7 +59,7 @@ export class UserService {
   }
 
   getProfilePicture() {
-    return this.http.get('http://localhost:3000/upload-photo/get', {headers: this.getHeader()});
+    return this.http.get('upload-photo/get-pic', {headers: this.getHeader()});
   }
 
 
@@ -71,4 +71,6 @@ export class UserService {
     }
   }
 
+  
+  
 }

@@ -1,3 +1,5 @@
+// import 'jquery';
+// declare var $: any
 declare var module: {
     id: string,
 };

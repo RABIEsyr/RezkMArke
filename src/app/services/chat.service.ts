@@ -10,7 +10,7 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 export class ChatService {
-  private url = 'http://localhost:3000';
+  private url = ''; //http://localhost:3000
   private socket;
   private token = localStorage.getItem('token');
   constructor(private http: HttpClient, private userService: UserService) {

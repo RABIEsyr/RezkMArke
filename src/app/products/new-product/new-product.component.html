@@ -121,7 +121,7 @@
                
 
                <td colspan="1">
-                  <form class="well form-horizontal">
+                  <div class="well form-horizontal">
                      <fieldset>
                         <div class="form-group">
                            <label class="col-md-4 control-label">Title</label>
@@ -154,11 +154,17 @@
                                  <span class="input-group-addon">
                                     <i class="far fa-image"></i>
                                  </span>
-                                 <input id="city" 
+                                 <!-- <input id="city" 
                                     name="imageUrl" [(ngModel)]="editImageUrl"
                                     placeholder="http://image-url" class="form-control" required="true"
-                                    >
-                                    <img *ngIf="editImageUrl" [src]="editImageUrl"
+                                    > -->
+                                    <div>
+                                       <div>
+                                          <!-- <input type="file" ngModel name="imgFile" (change)="createFormData($event)"> -->
+                                          <input type="text" ngModel name="imageUrl" >
+                                       </div>
+                                     </div>
+                                    <img *ngIf="imgURL" [src]="imageUrl"
                                     style="max-height: 300px;"
                                      alt="unloaded" class="img-thumbnail">
                               </div>
@@ -200,9 +206,9 @@
 
                                     <option>None</option>
                                     <option [value]="'add_new_category'">add Category</option>
-                                    <span *ngFor="let category of categories">
-                                       <option [value]="category._id">{{category.type}}</option>
-                                    </span>
+                                  
+                                       <option  *ngFor="let category of categories" [value]="category._id">{{category.type}}</option>
+                                    
                                  </select>
                               </div>
                            </div>
@@ -247,15 +253,15 @@
                         <div class="form-group">
                            <label class="col-md-4 control-label">Quantity</label>
                            <div class="col-md-8 inputGroupContainer">
-                              <div class="input-group"><span class="input-group-addon"><i
-                                       class="glyphicon glyphicon-earphone"></i></span>
+                              <div class="input-group"><span class="input-group-addon">
+                                 <i class="glyphicon glyphicon-th-large"></i></span>
                                        <input id="phoneNumber"
                                        name="quantity" [(ngModel)]="editQuantity" class="form-control" required="true"
                                      type="text"></div>
                            </div>
                         </div>
                      </fieldset>
-                  </form>
+                  </div>
                </td>
 
             </tr>

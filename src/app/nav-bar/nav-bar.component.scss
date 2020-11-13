@@ -1235,3 +1235,10 @@ a[aria-expanded=true] .fa-plus {
   border:1px solid blue;
 }
 
+.shopping-cart {
+  display: inline-block;
+  background: url('https://webdevtrick.com/wp-content/uploads/cart.png') no-repeat 0 0;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px 0 0;
+}

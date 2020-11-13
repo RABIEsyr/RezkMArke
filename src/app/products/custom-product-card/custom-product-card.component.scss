@@ -188,3 +188,17 @@
     }
   }
 }
+
+.minus-add-btn:hover {
+  box-shadow: 2px 2px #888888;
+}
+
+.navi {
+  background-color: skyblue;
+  opacity: 0.5;
+  z-index: 10;
+  transform: skewY(-20deg);
+  position: absolute;
+  top: 10px;
+  width: 100%;
+}

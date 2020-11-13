@@ -1,3 +1,4 @@
+import { GlobalService } from 'src/app/services/global.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   message =  '';
   err = false;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private globalService: GlobalService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -29,6 +30,9 @@ export class LoginComponent implements OnInit {
           if (data['success']) {
             const token = data['token'];
             localStorage.setItem('token', token);
+            this.userService.getProfilePicture().subscribe(img => {
+              this.globalService.profilePicture.next(img);
+            });
             this.router.navigate(['']);
           } else {
             switch (data['message']) {

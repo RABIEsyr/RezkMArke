@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 
 
 
-const url = 'http://localhost:3000/shopping'; // http://localhost:3000/shopping
+const url = 'shopping'; // http://localhost:3000/shopping
 
 @Injectable({
     providedIn: 'root'
@@ -28,5 +28,15 @@ export class ShoppingService {
 
     deletProductFromCart(id) {
       return this.http.post(url + '/remove-one-product', {id}, {  headers: this.userService.getHeader() });
+    }
+
+
+    submitBuy(totalPrice) {
+      return this.http.post(url + '/submit-buy', {totalaPrice: totalPrice}, {  headers: this.userService.getHeader() });
+
+    }
+
+    getHistory() {
+      return this.http.get(url + '/history', {  headers: this.userService.getHeader() });
     }
 }

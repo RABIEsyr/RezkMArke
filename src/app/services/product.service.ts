@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 
 
 
-const url = 'http://localhost:3000/api'; // http://localhost:3000/api;
+const url = 'api'; // http://localhost:3000/api;
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class ProductService {
   searchDivToggle = new Subject<boolean>();
   productList = new Subject<Object>();
   notificationBadge = new Subject();
- 
+
 
   constructor(private http: HttpClient, private userService: UserService) { }
 
@@ -28,7 +28,12 @@ export class ProductService {
   }
 
   addProduct(product) {
-    return this.http.post(url + '/new-Product', { product }, { headers: this.userService.getHeader() });
+    return this.http.post(url + '/new-product', { product }, { headers: this.userService.getHeader() });
+  }
+
+  addProduct2(formData) {
+    return this.http.post(url + '/new-product-image', formData, { headers: this.userService.getHeader() });
+
   }
 
   searchProductByName(name, category?) {
@@ -50,6 +55,9 @@ export class ProductService {
 
   getProductsFilter(price?, category?, alcohol?) {
     return this.http.post(url + '/products-filter', {params: {price, category, alcohol}});
+  } 
+   deleteProduct(id) {
+    return this.http.post(url + '/delete-product', {id}, { headers: this.userService.getHeader() });
   }
 
 }

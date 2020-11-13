@@ -1,18 +1,30 @@
 <div class="wrapper">
   <div class="container">
+    <div class="navi" *ngIf="exist">In Cart</div>
     <div class="top" [style.backgroundImage]="'url(' + imageUrl + ')'">
     </div>
     <div class="bottom">
       <div class="left">
         <div class="details">
-          <h1> {{ name }} </h1>
+          <h1 style="font-size: 1.5rem;"> {{ name |  slice:0:10  }} </h1>
           <p> SP {{ price }} </p>
         </div>
-        <div class="buy"><i class="material-icons"
+        <div *ngIf="!exist" class="buy add-to-cart">
+          <i class="material-icons"
           style="cursor: pointer;" 
-          (click)="onBuy(id)">add_shopping_cart</i></div>
+          (click)="onBuy(id)">add_shopping_cart
+        </i>
+        </div>
+
+        <div class="col" *ngIf="exist">
+          <div class="row"><button style="width: 100%;" class="minus-add-btn" (click)="onMinus(id)">-</button></div>
+          <div class="row" style="justify-content: center;"><p>{{count}}</p></div>
+          <div class="row"><button style="width: 100%;" class="minus-add-btn" (click)="onPlus(id)">+</button></div>
+        </div>
+
       </div>
-      <div class="right">
+     
+      <div class="right" *ngIf="!exist">
         <div class="done"><i class="material-icons">done</i></div>
         <div class="details">
           <h1>Chair</h1>
@@ -20,7 +32,9 @@
         </div>
         <div class="remove"><i class="material-icons">clear</i></div>
       </div>
+  
     </div>
+  
   </div>
   <div class="inside">
     <div class="icon"><i class="material-icons">info_outline</i></div>
